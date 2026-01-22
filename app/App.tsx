@@ -12,7 +12,16 @@ export default function App() {
                 <Text style={styles.headerText}>Clicker</Text>
                 <Text style={styles.counterText}>Balance: {balance}</Text>
             </View>
-            <Pressable style={styles.clickButton} onPress={increaseBalance} />
+            <Pressable
+                style={({ pressed }) => [
+                    styles.clickButton,
+                    pressed && {
+                        transform: [{ scale: 0.97 }],
+                        opacity: 0.9,
+                    },
+                ]}
+                onPress={increaseBalance}
+            />
         </SafeAreaView>
     );
 }
@@ -20,20 +29,38 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        gap: "40%",
         backgroundColor: colors.background,
+        paddingHorizontal: 14,
+        paddingTop: 14 * 1.5,
+        paddingBottom: 14,
+        alignItems: "stretch",
+        gap: "30%",
     },
+
     headerText: {
-        fontSize: 20,
+        fontSize: 22,
         textAlign: "center",
-        fontWeight: "bold",
-        color: "white",
+        fontWeight: "700",
+        color: colors.textPrimary,
+        marginBottom: 14,
     },
+
     counterText: {
-        fontSize: 20,
+        fontSize: 18,
         textAlign: "center",
-        fontWeight: "bold",
-        color: "white",
+        fontWeight: "700",
+        color: colors.indigo400,
+        alignSelf: "center",
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        borderRadius: 999,
+        backgroundColor: colors.cardBackground,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.18,
+        shadowRadius: 4,
+        elevation: 3,
+        marginBottom: 14,
     },
     clickButton: {
         width: 200,

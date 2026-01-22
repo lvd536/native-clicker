@@ -1,8 +1,12 @@
 export const colors = {
-    indigo400: "#7c86ff",
-    indigo500: "#615fff",
-    indigo600: "#4f39f6",
-    indigo700: "#432dd7",
-    stone500: "#79716bcc",
+    indigo400: "#7C86FF",
+    indigo500: "#615FFF",
+    indigo600: "#4F39F6",
+    indigo700: "#432DD7",
+    stone500: "#79716BCC",
+    stone600: "#79716BF2",
     background: "#191820",
+    cardBackground: "#232226",
+    textPrimary: "#FFFFFF",
+    textMuted: "#CFCBD1",
 } as const;
