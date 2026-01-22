@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Shop() {
-    const { balance, shopItems } = useClickerStore();
+    const { balance, shopItems, upgradeItem } = useClickerStore();
     return (
         <SafeAreaView style={styles.container}>
             <View>
@@ -14,7 +14,7 @@ export default function Shop() {
             <View style={styles.shopContainer}>
                 {shopItems.map(({ Icon, ...item }) => (
                     <Pressable
-                        key={item.name}
+                        key={item.id}
                         style={({ pressed }) => [
                             styles.shopItem,
                             pressed && {
@@ -22,6 +22,7 @@ export default function Shop() {
                                 opacity: 0.9,
                             },
                         ]}
+                        onPressOut={() => upgradeItem(item.id)}
                     >
                         <View style={styles.shopItemHeader}>
                             <Text style={styles.shopItemTitle}>

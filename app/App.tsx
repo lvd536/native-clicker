@@ -1,10 +1,19 @@
 import { colors } from "@/consts/colors";
 import { useClickerStore } from "@/stores/clickerStore";
+import { useEffect } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function App() {
-    const { balance, increaseBalance } = useClickerStore();
+    const { balance, increaseBalance, autoClickMultiplier } = useClickerStore();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (autoClickMultiplier > 0) increaseBalance(autoClickMultiplier);
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [autoClickMultiplier]);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -20,7 +29,7 @@ export default function App() {
                         opacity: 0.9,
                     },
                 ]}
-                onPress={increaseBalance}
+                onPress={() => increaseBalance()}
             />
         </SafeAreaView>
     );
