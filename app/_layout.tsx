@@ -1,24 +1,32 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+import { colors } from "@/consts/colors";
+import { Tabs } from "expo-router";
+import { MousePointerClick, Store } from "lucide-react-native";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+    return (
+        <Tabs
+            screenOptions={{
+                headerShown: false,
+                tabBarActiveBackgroundColor: colors.background,
+                tabBarInactiveBackgroundColor: colors.background,
+            }}
+        >
+            <Tabs.Screen
+                name="App"
+                options={{
+                    title: "Clicker",
+                    tabBarIcon: ({ color }) => (
+                        <MousePointerClick color={color} />
+                    ),
+                }}
+            />
+            <Tabs.Screen
+                name="Shop"
+                options={{
+                    title: "Shop",
+                    tabBarIcon: ({ color }) => <Store color={color} />,
+                }}
+            />
+        </Tabs>
+    );
 }
