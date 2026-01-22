@@ -1,5 +1,6 @@
 import { colors } from "@/consts/colors";
 import { useClickerStore } from "@/stores/clickerStore";
+import { Currency } from "lucide-react-native";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -38,6 +39,31 @@ export default function Shop() {
                             <Text style={styles.shopItemFooterText}>
                                 Level {item.level}
                             </Text>
+                            <View
+                                style={{
+                                    width: 4,
+                                    height: 4,
+                                    backgroundColor: "#444",
+                                    borderRadius: "100%",
+                                    marginHorizontal: 6,
+                                }}
+                            />
+                            <View
+                                style={{
+                                    flexDirection: "row",
+                                    gap: 4,
+                                    alignItems: "center",
+                                }}
+                            >
+                                <Text style={styles.shopItemFooterText}>
+                                    {item.price}
+                                </Text>
+                                <Currency
+                                    width={12}
+                                    height={12}
+                                    color="white"
+                                />
+                            </View>
                         </View>
                     </Pressable>
                 ))}
@@ -130,6 +156,7 @@ export const styles = StyleSheet.create({
     },
 
     shopItemFooter: {
+        flexDirection: "row",
         width: "100%",
         height: 28,
         backgroundColor: colors.stone600,
@@ -137,6 +164,8 @@ export const styles = StyleSheet.create({
         borderBottomRightRadius: 12,
         justifyContent: "center",
         paddingHorizontal: 8,
+        gap: 2,
+        alignItems: "center",
     },
 
     shopItemTitle: {
