@@ -1,9 +1,11 @@
+import { Clock, LucideIcon } from "lucide-react-native";
 import { create } from "zustand";
 
 interface IShopItem {
     name: string;
     level: number;
     price: number;
+    Icon: LucideIcon;
 }
 
 interface IClickerStore {
@@ -16,9 +18,28 @@ interface IClickerStore {
 
 const shopItems: IShopItem[] = [
     {
-        name: "test",
+        name: "+1 click",
         level: 1,
-        price: 1,
+        price: 999,
+        Icon: Clock,
+    },
+    {
+        name: "+1 auto click",
+        level: 1,
+        price: 999,
+        Icon: Clock,
+    },
+    {
+        name: "+2 click",
+        level: 1,
+        price: 1999,
+        Icon: Clock,
+    },
+    {
+        name: "+2 auto click",
+        level: 1,
+        price: 1999,
+        Icon: Clock,
     },
 ];
 
