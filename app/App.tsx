@@ -5,7 +5,8 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function App() {
-    const { balance, increaseBalance, autoClickMultiplier } = useClickerStore();
+    const { balance, increaseBalance, autoClickMultiplier, clickMultiplier } =
+        useClickerStore();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -19,7 +20,17 @@ export default function App() {
         <SafeAreaView style={styles.container}>
             <View>
                 <Text style={styles.headerText}>Clicker</Text>
-                <Text style={styles.counterText}>Balance: {balance}</Text>
+                <View style={styles.headerContainer}>
+                    <Text style={styles.statsText}>
+                        Auto: {autoClickMultiplier}
+                    </Text>
+                    <View style={styles.headerSeparatingCircle} />
+                    <Text style={styles.counterText}>Balance: {balance}</Text>
+                    <View style={styles.headerSeparatingCircle} />
+                    <Text style={styles.statsText}>
+                        Click: {clickMultiplier}
+                    </Text>
+                </View>
             </View>
             <Pressable
                 style={({ pressed }) => [
@@ -53,7 +64,20 @@ const styles = StyleSheet.create({
         color: colors.textPrimary,
         marginBottom: 14,
     },
-
+    headerContainer: {
+        flexDirection: "row",
+        gap: 4,
+        justifyContent: "center",
+        alignItems: "center",
+        alignContent: "center",
+    },
+    headerSeparatingCircle: {
+        width: 6,
+        height: 6,
+        backgroundColor: "white",
+        borderRadius: "100%",
+        marginHorizontal: 4,
+    },
     counterText: {
         fontSize: 18,
         textAlign: "center",
@@ -69,7 +93,22 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.18,
         shadowRadius: 4,
         elevation: 3,
-        marginBottom: 14,
+    },
+    statsText: {
+        fontSize: 16,
+        textAlign: "center",
+        fontWeight: "700",
+        color: colors.indigo400,
+        alignSelf: "center",
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 999,
+        backgroundColor: colors.cardBackground,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.18,
+        shadowRadius: 4,
+        elevation: 3,
     },
     clickButton: {
         width: 200,
